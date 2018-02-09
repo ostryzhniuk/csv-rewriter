@@ -83,4 +83,315 @@ public class ContactDTO {
     @Parsed(index = 38, field = "Type")
     private String type;
 
+    public String getForeignReference() {
+        return foreignReference;
+    }
+
+    public void setForeignReference(String foreignReference) {
+        this.foreignReference = foreignReference;
+    }
+
+    public String getFixPhone1() {
+        return fixPhone1;
+    }
+
+    public void setFixPhone1(String fixPhone1) {
+        this.fixPhone1 = fixPhone1;
+    }
+
+    public String getFixPhone2() {
+        return fixPhone2;
+    }
+
+    public void setFixPhone2(String fixPhone2) {
+        this.fixPhone2 = fixPhone2;
+    }
+
+    public String getFax() {
+        return fax;
+    }
+
+    public void setFax(String fax) {
+        this.fax = fax;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getMobilePhone1() {
+        return mobilePhone1;
+    }
+
+    public void setMobilePhone1(String mobilePhone1) {
+        this.mobilePhone1 = mobilePhone1;
+    }
+
+    public String getMobilePhone2() {
+        return mobilePhone2;
+    }
+
+    public void setMobilePhone2(String mobilePhone2) {
+        this.mobilePhone2 = mobilePhone2;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getPhoneNumberHome() {
+        return phoneNumberHome;
+    }
+
+    public void setPhoneNumberHome(String phoneNumberHome) {
+        this.phoneNumberHome = phoneNumberHome;
+    }
+
+    public String getEmailHome() {
+        return emailHome;
+    }
+
+    public void setEmailHome(String emailHome) {
+        this.emailHome = emailHome;
+    }
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
+    }
+
+    public String getPreferredContactMethod() {
+        return preferredContactMethod;
+    }
+
+    public void setPreferredContactMethod(String preferredContactMethod) {
+        this.preferredContactMethod = preferredContactMethod;
+    }
+
+    public String getSalutation() {
+        return salutation;
+    }
+
+    public void setSalutation(String salutation) {
+        this.salutation = salutation;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public String getMiddlename() {
+        return middlename;
+    }
+
+    public void setMiddlename(String middlename) {
+        this.middlename = middlename;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public String getIsPrimeContactPerson() {
+        return isPrimeContactPerson;
+    }
+
+    public void setIsPrimeContactPerson(String isPrimeContactPerson) {
+        this.isPrimeContactPerson = isPrimeContactPerson;
+    }
+
+    public String getBirthdate() {
+        return birthdate;
+    }
+
+    public void setBirthdate(String birthdate) {
+        this.birthdate = birthdate;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public String getCompany() {
+        return company;
+    }
+
+    public void setCompany(String company) {
+        this.company = company;
+    }
+
+    public String getAddressCompany() {
+        return addressCompany;
+    }
+
+    public void setAddressCompany(String addressCompany) {
+        this.addressCompany = addressCompany;
+    }
+
+    public String getAddressCompanyLine2() {
+        return addressCompanyLine2;
+    }
+
+    public void setAddressCompanyLine2(String addressCompanyLine2) {
+        this.addressCompanyLine2 = addressCompanyLine2;
+    }
+
+    public String getStreet1() {
+        return street1;
+    }
+
+    public void setStreet1(String street1) {
+        this.street1 = street1;
+    }
+
+    public String getStreet2() {
+        return street2;
+    }
+
+    public void setStreet2(String street2) {
+        this.street2 = street2;
+    }
+
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getIsPrimeAddress() {
+        return isPrimeAddress;
+    }
+
+    public void setIsPrimeAddress(String isPrimeAddress) {
+        this.isPrimeAddress = isPrimeAddress;
+    }
+
+    public String getIsDeliveryAddress() {
+        return isDeliveryAddress;
+    }
+
+    public void setIsDeliveryAddress(String isDeliveryAddress) {
+        this.isDeliveryAddress = isDeliveryAddress;
+    }
+
+    public String getIsInvoiceAddress() {
+        return isInvoiceAddress;
+    }
+
+    public void setIsInvoiceAddress(String isInvoiceAddress) {
+        this.isInvoiceAddress = isInvoiceAddress;
+    }
+
+    public String getPobNumber() {
+        return pobNumber;
+    }
+
+    public void setPobNumber(String pobNumber) {
+        this.pobNumber = pobNumber;
+    }
+
+    public String getPobZipCode() {
+        return pobZipCode;
+    }
+
+    public void setPobZipCode(String pobZipCode) {
+        this.pobZipCode = pobZipCode;
+    }
+
+    public String getPobCity() {
+        return pobCity;
+    }
+
+    public void setPobCity(String pobCity) {
+        this.pobCity = pobCity;
+    }
+
+    public String getLeadNumber() {
+        return leadNumber;
+    }
+
+    public void setLeadNumber(String leadNumber) {
+        this.leadNumber = leadNumber;
+    }
+
+    public String getCustomerNumber() {
+        return customerNumber;
+    }
+
+    public void setCustomerNumber(String customerNumber) {
+        this.customerNumber = customerNumber;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 }
