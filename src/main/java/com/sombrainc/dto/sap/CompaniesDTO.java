@@ -1,4 +1,4 @@
-package com.sombrainc.dto;
+package com.sombrainc.dto.sap;
 
 import com.univocity.parsers.annotations.Parsed;
 

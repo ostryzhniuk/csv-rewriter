@@ -1,6 +1,6 @@
 package com.sombrainc;
 
-import com.sombrainc.dto.CompaniesDTO;
+import com.sombrainc.dto.sap.CompaniesDTO;
 import com.sombrainc.utils.CSVHandler;
 
 import java.io.File;
