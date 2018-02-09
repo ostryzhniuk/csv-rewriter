@@ -58,33 +58,6 @@ public class CompaniesDTO implements Serializable {
     public CompaniesDTO() {
     }
 
-    public CompaniesDTO(String cardCode, String cardType, String country, String cardName, String cardForeignName, String aliasname, String notes, String phone1, String phone2, String cellular, String fax, String emailAddress, String website, String federalTaxID, String additionalID, String frozen, String valid, String datev, String password, String channelBP, String uNagReMail, String creditLimit, String groupCode, String uNagRrVart) {
-        this.cardCode = cardCode;
-        this.cardType = cardType;
-        this.country = country;
-        this.cardName = cardName;
-        this.cardForeignName = cardForeignName;
-        this.aliasname = aliasname;
-        this.notes = notes;
-        this.phone1 = phone1;
-        this.phone2 = phone2;
-        this.cellular = cellular;
-        this.fax = fax;
-        this.emailAddress = emailAddress;
-        this.website = website;
-        this.federalTaxID = federalTaxID;
-        this.additionalID = additionalID;
-        this.frozen = frozen;
-        this.valid = valid;
-        this.datev = datev;
-        this.password = password;
-        this.channelBP = channelBP;
-        this.uNagReMail = uNagReMail;
-        this.creditLimit = creditLimit;
-        this.groupCode = groupCode;
-        this.uNagRrVart = uNagRrVart;
-    }
-
     public String getCardCode() {
         return cardCode;
     }
