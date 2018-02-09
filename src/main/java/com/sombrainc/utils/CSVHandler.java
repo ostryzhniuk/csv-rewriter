@@ -12,15 +12,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 
-public class CSVHandler<T> {
+public class CSVHandler {
 
-    private Class<T> beanType;
-
-    public CSVHandler(Class<T> beanType) {
-        this.beanType = beanType;
-    }
-
-    public void writeBeans(List<T> beans, Path path){
+    public static <E> void writeBeans(List<E> beans, Path path, Class<E> beanType){
 
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         Writer outputWriter = new OutputStreamWriter(byteArrayOutputStream);
@@ -49,11 +43,12 @@ public class CSVHandler<T> {
 
     }
 
-    public List<T> parseBeans(File csvFile) {
-        BeanListProcessor<T> beanListProcessor = new BeanListProcessor<>(beanType);
+    public static <E> List<E> parseBeans(File csvFile, Class<E> beanType) {
+        BeanListProcessor<E> beanListProcessor = new BeanListProcessor<>(beanType);
 
         CsvParserSettings parserSettings = new CsvParserSettings();
         parserSettings.setProcessor(beanListProcessor);
+        parserSettings.setDelimiterDetectionEnabled(true);
         parserSettings.setNumberOfRowsToSkip(2);
 
         CsvParser parser = new CsvParser(parserSettings);
