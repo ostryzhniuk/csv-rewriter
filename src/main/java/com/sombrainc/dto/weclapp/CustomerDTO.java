@@ -7,7 +7,7 @@ import java.io.Serializable;
 public class CustomerDTO implements Serializable {
 
     @Parsed(index = 0, field = "CUSTOMER COMPANY NAME")
-    private String customerCompanyName;
+    private String companyName;
     @Parsed(index = 1, field = "Customer Company name 2")
     private String companyName2;
     @Parsed(index = 2, field = "Old customernumber")
@@ -202,12 +202,12 @@ public class CustomerDTO implements Serializable {
     public CustomerDTO() {
     }
 
-    public String getCustomerCompanyName() {
-        return customerCompanyName;
+    public String getCompanyName() {
+        return companyName;
     }
 
-    public void setCustomerCompanyName(String customerCompanyName) {
-        this.customerCompanyName = customerCompanyName;
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
     }
 
     public String getCompanyName2() {
