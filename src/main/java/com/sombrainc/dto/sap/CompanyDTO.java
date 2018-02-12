@@ -4,7 +4,7 @@ import com.univocity.parsers.annotations.Parsed;
 
 import java.io.Serializable;
 
-public class CompaniesDTO implements Serializable {
+public class CompanyDTO implements Serializable {
 
     @Parsed(index = 0)
     private String cardCode;
@@ -55,7 +55,7 @@ public class CompaniesDTO implements Serializable {
     @Parsed(index = 23)
     private String uNagRrVart;
 
-    public CompaniesDTO() {
+    public CompanyDTO() {
     }
 
     public String getCardCode() {
