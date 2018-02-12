@@ -2,44 +2,38 @@ package com.sombrainc.utils;
 
 import com.univocity.parsers.common.processor.BeanListProcessor;
 import com.univocity.parsers.common.processor.BeanWriterProcessor;
-import com.univocity.parsers.csv.CsvParser;
-import com.univocity.parsers.csv.CsvParserSettings;
-import com.univocity.parsers.csv.CsvWriter;
-import com.univocity.parsers.csv.CsvWriterSettings;
-import org.apache.commons.io.output.ByteArrayOutputStream;
+import com.univocity.parsers.csv.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 public class CSVHandler {
 
-    public static <E> void writeBeans(List<E> beans, Path path, Class<E> beanType){
+    private final static Logger LOGGER = LoggerFactory.getLogger(CSVHandler.class);
+    private final static String DELIMITER = ";";
+    private final static String LINE_SEPARATOR  = "\r\n";
+    private final static String ENCODING  = "UTF-8";
 
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        Writer outputWriter = new OutputStreamWriter(byteArrayOutputStream);
+    public static <E> void writeBeans(List<E> beans, File file, Class<E> beanType){
+        overwriteFile(Paths.get(file.getPath()));
+
+        CsvFormat format = new CsvFormat();
+        format.setDelimiter(DELIMITER.charAt(0));
+        format.setLineSeparator(LINE_SEPARATOR);
 
         CsvWriterSettings settings = new CsvWriterSettings();
         settings.setRowWriterProcessor(new BeanWriterProcessor<>(beanType));
+        settings.setFormat(format);
 
-        CsvWriter writer = new CsvWriter(outputWriter, settings);
+        CsvWriter writer = new CsvWriter(file, ENCODING, settings);
         writer.writeHeaders();
         writer.processRecords(beans);
         writer.close();
-
-        try(OutputStream outputStream = new FileOutputStream(path.toString())) {
-
-            Files.createFile(path.getFileName());
-            byteArrayOutputStream.writeTo(outputStream);
-        } catch (IOException e) {
-            throw new UncheckedIOException(e);
-        } finally {
-            try {
-                byteArrayOutputStream.close();
-            } catch (IOException e) {
-                throw new UncheckedIOException(e);
-            }
-        }
 
     }
 
@@ -56,6 +50,17 @@ public class CSVHandler {
         parser.parse(csvFile);
 
         return beanListProcessor.getBeans();
+    }
+
+    public static void overwriteFile(Path path){
+        try {
+            if (Files.exists(path)) {
+                Files.delete(path);
+            }
+            Files.createFile(path);
+        } catch (IOException e) {
+            LOGGER.error("Overwriting file error", e);
+        }
     }
 
 }
