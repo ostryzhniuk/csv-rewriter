@@ -151,11 +151,11 @@ public class CustomerDTO implements Serializable {
     @Parsed(index = 71, field = "Contact person title")
     private String contactPersonTitle;
     @Parsed(index = 72, field = "Contact person firstname")
-    private String contactPersonFirstname;
+    private String contactPersonFirstName;
     @Parsed(index = 73, field = "Contact person middlename")
-    private String contactPersonMiddlename;
+    private String contactPersonMiddleName;
     @Parsed(index = 74, field = "Contact person lastname")
-    private String contactPersonLastname;
+    private String contactPersonLastName;
     @Parsed(index = 75, field = "CONTACT PERSON IS PRIME CONTACT PERSON?")
     private String contactPersonIsPrimeContactPerson;
     @Parsed(index = 76, field = "Contact person is invoice contact person?")
@@ -778,28 +778,28 @@ public class CustomerDTO implements Serializable {
         this.contactPersonTitle = contactPersonTitle;
     }
 
-    public String getContactPersonFirstname() {
-        return contactPersonFirstname;
+    public String getContactPersonFirstName() {
+        return contactPersonFirstName;
     }
 
-    public void setContactPersonFirstname(String contactPersonFirstname) {
-        this.contactPersonFirstname = contactPersonFirstname;
+    public void setContactPersonFirstName(String contactPersonFirstName) {
+        this.contactPersonFirstName = contactPersonFirstName;
     }
 
-    public String getContactPersonMiddlename() {
-        return contactPersonMiddlename;
+    public String getContactPersonMiddleName() {
+        return contactPersonMiddleName;
     }
 
-    public void setContactPersonMiddlename(String contactPersonMiddlename) {
-        this.contactPersonMiddlename = contactPersonMiddlename;
+    public void setContactPersonMiddleName(String contactPersonMiddleName) {
+        this.contactPersonMiddleName = contactPersonMiddleName;
     }
 
-    public String getContactPersonLastname() {
-        return contactPersonLastname;
+    public String getContactPersonLastName() {
+        return contactPersonLastName;
     }
 
-    public void setContactPersonLastname(String contactPersonLastname) {
-        this.contactPersonLastname = contactPersonLastname;
+    public void setContactPersonLastName(String contactPersonLastName) {
+        this.contactPersonLastName = contactPersonLastName;
     }
 
     public String getContactPersonIsPrimeContactPerson() {
