@@ -12,7 +12,7 @@ public class CustomerDTO implements Serializable {
     private String companyName2;
     @Parsed(index = 2, field = "Old customernumber")
     private String customerNumber;
-    @Parsed(index = 3, field = "Old customernumber")
+    @Parsed(index = 3, field = "Customer description (Beschreibung)")
     private String description;
     @Parsed(index = 4, field = "Address company")
     private String addressCompany;
