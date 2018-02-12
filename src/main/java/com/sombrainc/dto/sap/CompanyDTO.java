@@ -17,7 +17,7 @@ public class CompanyDTO implements Serializable {
     @Parsed(index = 4)
     private String cardForeignName;
     @Parsed(index = 5)
-    private String aliasname;
+    private String aliasName;
     @Parsed(index = 6)
     private String notes;
     @Parsed(index = 7)
@@ -98,12 +98,12 @@ public class CompanyDTO implements Serializable {
         this.cardForeignName = cardForeignName;
     }
 
-    public String getAliasname() {
-        return aliasname;
+    public String getAliasName() {
+        return aliasName;
     }
 
-    public void setAliasname(String aliasname) {
-        this.aliasname = aliasname;
+    public void setAliasName(String aliasName) {
+        this.aliasName = aliasName;
     }
 
     public String getNotes() {
