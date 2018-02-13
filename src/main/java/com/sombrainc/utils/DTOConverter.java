@@ -37,7 +37,8 @@ public final class DTOConverter {
             }
 
             for (CompanyAddressDTO address : addresses) {
-                if (Objects.equals(company.getCardCode(), address.getCardCode())) {
+                if (Objects.equals(company.getCardCode(), address.getCardCode()) &&
+                        address.getAddressType().equals("B")) {
                     customerBuilder.setCompanyAddress(address);
                     break;
                 }
