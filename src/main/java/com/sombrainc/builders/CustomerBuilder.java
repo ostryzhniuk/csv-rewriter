@@ -1,4 +1,4 @@
-package com.sombrainc.mappers;
+package com.sombrainc.builders;
 
 import com.sombrainc.dto.sap.CompanyAddressDTO;
 import com.sombrainc.dto.sap.CompanyBankAccountDTO;
