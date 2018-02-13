@@ -1,7 +1,9 @@
 package com.sombrainc.dto.sap;
 
 import com.univocity.parsers.annotations.Parsed;
+import lombok.Data;
 
+@Data
 public class CompanyBankAccountDTO {
 
     @Parsed(index = 0)
@@ -21,70 +23,4 @@ public class CompanyBankAccountDTO {
     @Parsed(index = 7)
     private String bik;
 
-    public CompanyBankAccountDTO() {
-    }
-
-    public String getCardCode() {
-        return cardCode;
-    }
-
-    public void setCardCode(String cardCode) {
-        this.cardCode = cardCode;
-    }
-
-    public String getLineNum() {
-        return lineNum;
-    }
-
-    public void setLineNum(String lineNum) {
-        this.lineNum = lineNum;
-    }
-
-    public String getLogInstance() {
-        return logInstance;
-    }
-
-    public void setLogInstance(String logInstance) {
-        this.logInstance = logInstance;
-    }
-
-    public String getBpCode() {
-        return bpCode;
-    }
-
-    public void setBpCode(String bpCode) {
-        this.bpCode = bpCode;
-    }
-
-    public String getAccountNo() {
-        return accountNo;
-    }
-
-    public void setAccountNo(String accountNo) {
-        this.accountNo = accountNo;
-    }
-
-    public String getIban() {
-        return iban;
-    }
-
-    public void setIban(String iban) {
-        this.iban = iban;
-    }
-
-    public String getBankCode() {
-        return bankCode;
-    }
-
-    public void setBankCode(String bankCode) {
-        this.bankCode = bankCode;
-    }
-
-    public String getBik() {
-        return bik;
-    }
-
-    public void setBik(String bik) {
-        this.bik = bik;
-    }
 }
