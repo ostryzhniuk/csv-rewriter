@@ -6,6 +6,8 @@ import com.sombrainc.dto.sap.CompanyContactDTO;
 import com.sombrainc.dto.sap.CompanyDTO;
 import com.sombrainc.dto.weclapp.CustomerDTO;
 
+import java.util.Objects;
+
 public class CustomerBuilder {
 
     private CustomerDTO customer;
@@ -22,7 +24,7 @@ public class CustomerBuilder {
         customer.setCompanyMainFax(company.getFax());
         customer.setCompanyInfoEmail(company.getEmailAddress());
         customer.setCompanyWebsite(company.getWebsite());
-        customer.setCustomerActive(company.getValid());
+        customer.setCustomerActive(convertBooleanValue(company.getValid()));
         customer.setContactPersonEmail(company.getuNagReMail());
         customer.setCreditLimit(company.getCreditLimit());
 
@@ -60,10 +62,19 @@ public class CustomerBuilder {
     }
 
     private String generatePersonSalutation(CompanyContactDTO companyContact) {
-        if (companyContact.getGender().equals("M") ) {
+        if (Objects.equals(companyContact.getGender(), "M")) {
             return "Herr";
-        } else if (companyContact.getGender().equals("F")) {
+        } else if (Objects.equals(companyContact.getGender(), "F")) {
             return "Frau";
+        }
+        return null;
+    }
+
+    private String convertBooleanValue(String value) {
+        if (Objects.equals(value, "Y")) {
+            return "ja";
+        } else if (Objects.equals(value, "N")) {
+            return "nein";
         }
         return null;
     }
