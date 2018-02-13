@@ -25,7 +25,7 @@ public class CustomerBuilder {
         customer.setCompanyInfoEmail(company.getEmailAddress());
         customer.setCompanyWebsite(company.getWebsite());
         customer.setCustomerActive(convertBooleanValue(company.getValid()));
-        customer.setContactPersonEmail(company.getuNagReMail());
+        customer.setContactPersonEmail(company.getUNagReMail());
         customer.setCreditLimit(company.getCreditLimit());
 
         return this;

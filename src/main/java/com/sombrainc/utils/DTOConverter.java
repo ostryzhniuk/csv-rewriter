@@ -31,8 +31,8 @@ public final class DTOConverter {
 
             for (CompanyContactDTO contact : contacts) {
                 if (Objects.equals(company.getCardCode(), contact.getCardCode()) &&
-                        company.getuNagReMail() != null &&
-                        Objects.equals(company.getuNagReMail(), contact.getEmail())) {
+                        company.getUNagReMail() != null &&
+                        Objects.equals(company.getUNagReMail(), contact.getEmail())) {
                     customerBuilder.setCompanyContact(contact);
                     break;
                 }
