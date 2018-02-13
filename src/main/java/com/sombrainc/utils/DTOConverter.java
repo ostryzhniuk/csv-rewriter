@@ -1,10 +1,12 @@
 package com.sombrainc.utils;
 
+import com.sombrainc.builders.ContactBuilder;
 import com.sombrainc.builders.CustomerBuilder;
 import com.sombrainc.dto.sap.CompanyAddressDTO;
 import com.sombrainc.dto.sap.CompanyBankAccountDTO;
 import com.sombrainc.dto.sap.CompanyContactDTO;
 import com.sombrainc.dto.sap.CompanyDTO;
+import com.sombrainc.dto.weclapp.ContactDTO;
 import com.sombrainc.dto.weclapp.CustomerDTO;
 
 import java.util.LinkedList;
@@ -55,7 +57,28 @@ public final class DTOConverter {
         });
 
         return customers;
+    }
 
+    public static List<ContactDTO> convertToContactList(List<CompanyContactDTO> companyContacts,
+                                                        List<CompanyDTO> companies) {
+
+        List<ContactDTO> contacts = new LinkedList<>();
+
+        companyContacts.forEach(companyContact -> {
+            ContactBuilder contactBuilder = new ContactBuilder();
+            contactBuilder.setCompanyContact(companyContact);
+
+            for (CompanyDTO company : companies) {
+                if (Objects.equals(company.getCardCode(), companyContact.getCardCode())) {
+                    contactBuilder.setCompany(company);
+                    break;
+                }
+            }
+
+            contacts.add(contactBuilder.toContactDTO());
+        });
+
+        return contacts;
     }
 
 }

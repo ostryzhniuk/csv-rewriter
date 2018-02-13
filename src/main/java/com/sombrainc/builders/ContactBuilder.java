@@ -26,7 +26,7 @@ public class ContactBuilder {
         return this;
     }
 
-    public ContactBuilder setContactPersonCompany(CompanyDTO company) {
+    public ContactBuilder setCompany(CompanyDTO company) {
         contact.setCompany(company.getCardName());
         return this;
     }
@@ -38,6 +38,10 @@ public class ContactBuilder {
             return "Frau";
         }
         return null;
+    }
+
+    public ContactDTO toContactDTO() {
+        return this.contact;
     }
 
 }

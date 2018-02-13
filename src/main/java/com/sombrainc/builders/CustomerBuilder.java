@@ -80,7 +80,7 @@ public class CustomerBuilder {
     }
 
     public CustomerDTO toCustomerDTO() {
-        return customer;
+        return this.customer;
     }
 
 }

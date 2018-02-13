@@ -1,5 +1,6 @@
 package com.sombrainc;
 
+import com.sombrainc.dto.weclapp.ContactDTO;
 import com.sombrainc.utils.DTOConverter;
 import com.sombrainc.dto.sap.CompanyAddressDTO;
 import com.sombrainc.dto.sap.CompanyBankAccountDTO;
@@ -18,21 +19,26 @@ public class Application {
                 new File("/home/sombra-48/Desktop/OCRDMAIN.csv"),
                 CompanyDTO.class);
 
-        List<CompanyContactDTO> contacts = CSVHandler.readBeans(
+        List<CompanyContactDTO> companyContacts = CSVHandler.readBeans(
                 new File("/home/sombra-48/Desktop/OCPR.csv"),
                 CompanyContactDTO.class);
 
-        List<CompanyAddressDTO> addresses = CSVHandler.readBeans(
+        List<CompanyAddressDTO> companyAddresses = CSVHandler.readBeans(
                 new File("/home/sombra-48/Desktop/CRD1.csv"),
                 CompanyAddressDTO.class);
 
-        List<CompanyBankAccountDTO> bankAccounts = CSVHandler.readBeans(
+        List<CompanyBankAccountDTO> companyBankAccounts = CSVHandler.readBeans(
                 new File("/home/sombra-48/Desktop/OCRB.csv"),
                 CompanyBankAccountDTO.class);
 
-        List<CustomerDTO> customers = DTOConverter.convertToCustomerList(companies, contacts, addresses, bankAccounts);
+
+        List<CustomerDTO> customers =
+                DTOConverter.convertToCustomerList(companies, companyContacts, companyAddresses, companyBankAccounts);
+
+        List<ContactDTO> contacts = DTOConverter.convertToContactList(companyContacts, companies);
 
         CSVHandler.writeBeans(customers, new File("/home/sombra-48/Desktop/customers.csv"), CustomerDTO.class);
+        CSVHandler.writeBeans(contacts, new File("/home/sombra-48/Desktop/contacts.csv"), ContactDTO.class);
 
      }
 
