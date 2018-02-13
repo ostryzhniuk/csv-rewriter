@@ -1,15 +1,20 @@
 package com.sombrainc.mappers;
 
 import com.sombrainc.dto.sap.CompanyAddressDTO;
+import com.sombrainc.dto.sap.CompanyBankAccountDTO;
 import com.sombrainc.dto.sap.CompanyContactDTO;
 import com.sombrainc.dto.sap.CompanyDTO;
 import com.sombrainc.dto.weclapp.CustomerDTO;
 
-public class CustomerMapper {
+public class CustomerBuilder {
 
-    public CustomerDTO map(CompanyDTO company, CompanyAddressDTO companyAddress) {
-        CustomerDTO customer = new CustomerDTO();
+    private CustomerDTO customer;
 
+    public CustomerBuilder() {
+        customer = new CustomerDTO();
+    }
+
+    public CustomerBuilder setCompany(CompanyDTO company) {
         customer.setCompanyName(company.getCardName());
         customer.setCompanyName2(company.getCardForeignName());
         customer.setDescription(company.getNotes());
@@ -21,6 +26,10 @@ public class CustomerMapper {
         customer.setContactPersonEmail(company.getuNagReMail());
         customer.setCreditLimit(company.getCreditLimit());
 
+        return this;
+    }
+
+    public CustomerBuilder setCompanyAddress(CompanyAddressDTO companyAddress) {
         customer.setCompanyCountry(companyAddress.getCountry());
         customer.setCompanyStreet1(companyAddress.getStreet());
         customer.setCompanyZipCode(companyAddress.getZipCode());
@@ -28,14 +37,10 @@ public class CustomerMapper {
         customer.setAddressCompany(companyAddress.getAddressName2());
         customer.setAddressCompanyLine2(companyAddress.getAddressName3());
 
-
-
-        return customer;
+        return this;
     }
 
-    public CustomerDTO map(CompanyDTO company, CompanyAddressDTO companyAddress, CompanyContactDTO companyContact) {
-        CustomerDTO customer = map(company, companyAddress);
-
+    public CustomerBuilder setCompanyContact(CompanyContactDTO companyContact) {
         customer.setContactPersonFirstName(companyContact.getFirstName());
         customer.setContactPersonLastName(companyContact.getLastName());
         customer.setContactPersonFixPhone1(companyContact.getPhone());
@@ -44,7 +49,14 @@ public class CustomerMapper {
         customer.setContactPersonFax(companyContact.getFax());
         customer.setContactPersonSalutation(generatePersonSalutation(companyContact));
 
-        return customer;
+        return this;
+    }
+
+    public CustomerBuilder setCompanyBankAccount(CompanyBankAccountDTO companyBankAccount) {
+        customer.setIban(companyBankAccount.getIban());
+        customer.setBic(companyBankAccount.getBik());
+
+        return this;
     }
 
     private String generatePersonSalutation(CompanyContactDTO companyContact) {
@@ -54,6 +66,10 @@ public class CustomerMapper {
             return "Frau";
         }
         return null;
+    }
+
+    public CustomerDTO toCustomerDTO() {
+        return customer;
     }
 
 }
