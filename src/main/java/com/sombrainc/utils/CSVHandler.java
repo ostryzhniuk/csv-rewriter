@@ -12,7 +12,10 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
-public class CSVHandler {
+public final class CSVHandler {
+
+    private CSVHandler() {
+    }
 
     private final static Logger LOGGER = LoggerFactory.getLogger(CSVHandler.class);
     private final static String DELIMITER = ";";
@@ -52,7 +55,7 @@ public class CSVHandler {
         return beanListProcessor.getBeans();
     }
 
-    public static void overwriteFile(Path path){
+    private static void overwriteFile(Path path){
         try {
             if (Files.exists(path)) {
                 Files.delete(path);
