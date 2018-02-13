@@ -13,7 +13,7 @@ public class CustomerBuilder {
     private CustomerDTO customer;
 
     public CustomerBuilder() {
-        customer = new CustomerDTO();
+        this.customer = new CustomerDTO();
     }
 
     public CustomerBuilder setCompany(CompanyDTO company) {
