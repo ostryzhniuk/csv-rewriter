@@ -40,7 +40,7 @@ public final class CSVHandler {
 
     }
 
-    public static <E> List<E> parseBeans(File csvFile, Class<E> beanType) {
+    public static <E> List<E> readBeans(File csvFile, Class<E> beanType) {
         BeanListProcessor<E> beanListProcessor = new BeanListProcessor<>(beanType);
 
         CsvParserSettings parserSettings = new CsvParserSettings();
