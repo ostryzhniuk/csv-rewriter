@@ -9,6 +9,7 @@ import java.util.Objects;
 public class ContactBuilder {
 
     private ContactDTO contact;
+    private static final String DEFAULT_COUNTRY = "Germany";
 
     public ContactBuilder() {
         this.contact = new ContactDTO();
@@ -40,7 +41,14 @@ public class ContactBuilder {
         return null;
     }
 
+    private void validateCountry() {
+        if (contact.getCompany() == null || contact.getCompany().isEmpty()) {
+            contact.setCountry(DEFAULT_COUNTRY);
+        }
+    }
+
     public ContactDTO toContactDTO() {
+        validateCountry();
         return this.contact;
     }
 

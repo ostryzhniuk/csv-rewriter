@@ -11,6 +11,7 @@ import java.util.Objects;
 public class CustomerBuilder {
 
     private CustomerDTO customer;
+    private static final String DEFAULT_COUNTRY = "Germany";
 
     public CustomerBuilder() {
         this.customer = new CustomerDTO();
@@ -79,7 +80,18 @@ public class CustomerBuilder {
         return null;
     }
 
+    private void validateCountry() {
+        if (customer.getCompanyCountry() == null || customer.getCompanyCountry().isEmpty()) {
+            customer.setCompanyCountry(DEFAULT_COUNTRY);
+        }
+
+        if (customer.getContactPersonCountry() == null || customer.getContactPersonCountry().isEmpty()) {
+            customer.setContactPersonCountry(customer.getCompanyCountry());
+        }
+    }
+
     public CustomerDTO toCustomerDTO() {
+        validateCountry();
         return this.customer;
     }
 
