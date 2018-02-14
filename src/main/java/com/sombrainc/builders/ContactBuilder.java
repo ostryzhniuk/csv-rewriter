@@ -42,7 +42,7 @@ public class ContactBuilder {
     }
 
     private void validateCountry() {
-        if (contact.getCompany() == null || contact.getCompany().isEmpty()) {
+        if (contact.getCountry() == null || contact.getCountry().isEmpty()) {
             contact.setCountry(DEFAULT_COUNTRY);
         }
     }
