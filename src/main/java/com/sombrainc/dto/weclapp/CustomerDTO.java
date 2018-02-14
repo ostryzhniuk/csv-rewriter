@@ -4,6 +4,7 @@ import com.univocity.parsers.annotations.Parsed;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 @Data
 public class CustomerDTO implements Serializable {
@@ -201,4 +202,16 @@ public class CustomerDTO implements Serializable {
     @Parsed(index = 95, field = "Type")
     private String type;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CustomerDTO that = (CustomerDTO) o;
+        return Objects.equals(companyName, that.companyName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), companyName);
+    }
 }

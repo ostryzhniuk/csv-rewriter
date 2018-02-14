@@ -8,26 +8,30 @@ import com.sombrainc.dto.sap.CompanyContactDTO;
 import com.sombrainc.dto.sap.CompanyDTO;
 import com.sombrainc.dto.weclapp.CustomerDTO;
 import com.sombrainc.utils.CSVHandler;
+
 import java.io.File;
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 
 public class Application {
 
     public static void main(String[] args) {
 
-        List<CompanyDTO> companies = CSVHandler.readBeans(
+        List<CompanyDTO> companies = CSVHandler.readSapBeans(
                 new File("/home/sombra-48/Desktop/OCRDMAIN.csv"),
                 CompanyDTO.class);
 
-        List<CompanyContactDTO> companyContacts = CSVHandler.readBeans(
+        List<CompanyContactDTO> companyContacts = CSVHandler.readSapBeans(
                 new File("/home/sombra-48/Desktop/OCPR.csv"),
                 CompanyContactDTO.class);
 
-        List<CompanyAddressDTO> companyAddresses = CSVHandler.readBeans(
+        List<CompanyAddressDTO> companyAddresses = CSVHandler.readSapBeans(
                 new File("/home/sombra-48/Desktop/CRD1.csv"),
                 CompanyAddressDTO.class);
 
-        List<CompanyBankAccountDTO> companyBankAccounts = CSVHandler.readBeans(
+        List<CompanyBankAccountDTO> companyBankAccounts = CSVHandler.readSapBeans(
                 new File("/home/sombra-48/Desktop/OCRB.csv"),
                 CompanyBankAccountDTO.class);
 
@@ -37,9 +41,23 @@ public class Application {
 
         List<ContactDTO> contacts = DTOConverter.convertToContactList(companyContacts, companies);
 
-        CSVHandler.writeBeans(customers, new File("/home/sombra-48/Desktop/customers.csv"), CustomerDTO.class);
-        CSVHandler.writeBeans(contacts, new File("/home/sombra-48/Desktop/contacts.csv"), ContactDTO.class);
 
-     }
+        List<CustomerDTO> newCustomers = removeExistingCustomers(customers);
+
+
+        CSVHandler.writeWeclappBeans(newCustomers, new File("/home/sombra-48/Desktop/customers.csv"), CustomerDTO.class);
+        CSVHandler.writeWeclappBeans(contacts, new File("/home/sombra-48/Desktop/contacts.csv"), ContactDTO.class);
+    }
+
+    private static List<CustomerDTO> removeExistingCustomers(List<CustomerDTO> customers) {
+
+        List<CustomerDTO> exportedCustomers = CSVHandler.readWeclappBeans(
+                new File("/home/sombra-48/Desktop/CustomersExport.csv"),
+                CustomerDTO.class);
+
+        customers.removeAll(exportedCustomers);
+
+        return customers;
+    }
 
 }

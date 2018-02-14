@@ -18,41 +18,46 @@ public final class CSVHandler {
     }
 
     private final static Logger LOGGER = LoggerFactory.getLogger(CSVHandler.class);
-    private final static String DELIMITER = ";";
-    private final static String LINE_SEPARATOR  = "\r\n";
     private final static String ENCODING  = "UTF-8";
 
-    public static <E> void writeBeans(List<E> beans, File file, Class<E> beanType){
+    public static <E> void writeBeans(List<E> beans,
+                                      File file,
+                                      Class<E> beanType,
+                                      CsvWriterSettings csvWriterSettings){
+
         overwriteFile(Paths.get(file.getPath()));
 
-        CsvFormat format = new CsvFormat();
-        format.setDelimiter(DELIMITER.charAt(0));
-        format.setLineSeparator(LINE_SEPARATOR);
+        csvWriterSettings.setRowWriterProcessor(new BeanWriterProcessor<>(beanType));
 
-        CsvWriterSettings settings = new CsvWriterSettings();
-        settings.setRowWriterProcessor(new BeanWriterProcessor<>(beanType));
-        settings.setFormat(format);
-
-        CsvWriter writer = new CsvWriter(file, ENCODING, settings);
+        CsvWriter writer = new CsvWriter(file, ENCODING, csvWriterSettings);
         writer.writeHeaders();
         writer.processRecords(beans);
         writer.close();
-
     }
 
-    public static <E> List<E> readBeans(File csvFile, Class<E> beanType) {
+    public static <E> List<E> readBeans(File csvFile,
+                                        Class<E> beanType,
+                                        CsvParserSettings csvParserSettings) {
+
         BeanListProcessor<E> beanListProcessor = new BeanListProcessor<>(beanType);
-
-        CsvParserSettings parserSettings = new CsvParserSettings();
-        parserSettings.setProcessor(beanListProcessor);
-        parserSettings.setDelimiterDetectionEnabled(true);
-        parserSettings.setNumberOfRowsToSkip(2);
-
-        CsvParser parser = new CsvParser(parserSettings);
+        csvParserSettings.setProcessor(beanListProcessor);
+        CsvParser parser = new CsvParser(csvParserSettings);
 
         parser.parse(csvFile);
 
         return beanListProcessor.getBeans();
+    }
+
+    public static <E> List<E> readSapBeans(File csvFile, Class<E> beanType) {
+        return readBeans(csvFile, beanType, makeParserSettingsForSap());
+    }
+
+    public static <E> void writeWeclappBeans(List<E> beans, File file, Class<E> beanType) {
+        writeBeans(beans, file, beanType, makeWriterSettingsForWeclapp());
+    }
+
+    public static <E> List<E> readWeclappBeans(File csvFile, Class<E> beanType) {
+        return readBeans(csvFile, beanType, makeParserSettingsForWeclapp());
     }
 
     private static void overwriteFile(Path path){
@@ -64,6 +69,37 @@ public final class CSVHandler {
         } catch (IOException e) {
             LOGGER.error("Overwriting file error", e);
         }
+    }
+
+    public static CsvWriterSettings makeWriterSettingsForWeclapp() {
+        CsvFormat format = new CsvFormat();
+        format.setDelimiter(";".charAt(0));
+        format.setLineSeparator("\r\n");
+
+        CsvWriterSettings settings = new CsvWriterSettings();
+        settings.setFormat(format);
+
+        return settings;
+    }
+
+    public static CsvParserSettings makeParserSettingsForSap() {
+        CsvParserSettings settings = new CsvParserSettings();
+        settings.setDelimiterDetectionEnabled(true);
+        settings.setNumberOfRowsToSkip(2);
+
+        return settings;
+    }
+
+    public static CsvParserSettings makeParserSettingsForWeclapp() {
+        CsvFormat format = new CsvFormat();
+        format.setDelimiter(";".charAt(0));
+        format.setQuoteEscape("\"".charAt(0));
+        format.setLineSeparator("\r\n");
+
+        CsvParserSettings settings = new CsvParserSettings();
+        settings.setFormat(format);
+
+        return settings;
     }
 
 }
