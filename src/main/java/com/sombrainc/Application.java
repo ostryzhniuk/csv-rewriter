@@ -42,10 +42,11 @@ public class Application {
         List<ContactDTO> contacts = DTOConverter.convertToContactList(companyContacts, companies);
 
 
-        List<CustomerDTO> newCustomers = removeExistingCustomers(customers);
+        removeExistingCustomers(customers);
+        removeExistingContacts(contacts);
 
 
-        CSVHandler.writeWeclappBeans(newCustomers, new File("/home/sombra-48/Desktop/customers.csv"), CustomerDTO.class);
+        CSVHandler.writeWeclappBeans(customers, new File("/home/sombra-48/Desktop/customers.csv"), CustomerDTO.class);
         CSVHandler.writeWeclappBeans(contacts, new File("/home/sombra-48/Desktop/contacts.csv"), ContactDTO.class);
     }
 
@@ -58,6 +59,17 @@ public class Application {
         customers.removeAll(exportedCustomers);
 
         return customers;
+    }
+
+    private static List<ContactDTO> removeExistingContacts(List<ContactDTO> contacts) {
+
+        List<ContactDTO> exportedContacts = CSVHandler.readWeclappBeans(
+                new File("/home/sombra-48/Desktop/ContactExport.csv"),
+                ContactDTO.class);
+
+        contacts.removeAll(exportedContacts);
+
+        return contacts;
     }
 
 }

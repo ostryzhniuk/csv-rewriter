@@ -3,6 +3,8 @@ package com.sombrainc.dto.weclapp;
 import com.univocity.parsers.annotations.Parsed;
 import lombok.Data;
 
+import java.util.Objects;
+
 @Data
 public class ContactDTO {
 
@@ -85,4 +87,18 @@ public class ContactDTO {
     @Parsed(index = 38, field = "Type")
     private String type;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ContactDTO that = (ContactDTO) o;
+        return Objects.equals(firstName, that.firstName) &&
+                Objects.equals(lastName, that.lastName) &&
+                Objects.equals(company, that.company);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), firstName, lastName, company);
+    }
 }
