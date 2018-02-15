@@ -18,7 +18,7 @@ public final class CSVHandler {
     }
 
     private final static Logger LOGGER = LoggerFactory.getLogger(CSVHandler.class);
-    private final static String ENCODING  = "UTF-8";
+    private final static String ENCODING  = "ISO-8859-3";
 
     public static <E> void writeBeans(List<E> beans,
                                       File file,
