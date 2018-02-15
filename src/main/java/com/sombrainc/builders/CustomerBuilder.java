@@ -52,6 +52,7 @@ public class CustomerBuilder {
         customer.setContactPersonFax(companyContact.getFax());
         customer.setContactPersonSalutation(generatePersonSalutation(companyContact));
         customer.setContactPersonIsPrimeContactPerson("ja");
+        customer.setContactPersonCompany(customer.getCompanyName());
 
         return this;
     }

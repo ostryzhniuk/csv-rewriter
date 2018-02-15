@@ -37,19 +37,24 @@ public final class CSVHandler {
 
     public static <E> List<E> readBeans(File csvFile,
                                         Class<E> beanType,
-                                        CsvParserSettings csvParserSettings) {
+                                        CsvParserSettings csvParserSettings,
+                                        String encoding) {
 
         BeanListProcessor<E> beanListProcessor = new BeanListProcessor<>(beanType);
         csvParserSettings.setProcessor(beanListProcessor);
         CsvParser parser = new CsvParser(csvParserSettings);
 
-        parser.parse(csvFile);
+        if (encoding != null) {
+            parser.parse(csvFile, encoding);
+        } else {
+            parser.parse(csvFile);
+        }
 
         return beanListProcessor.getBeans();
     }
 
     public static <E> List<E> readSapBeans(File csvFile, Class<E> beanType) {
-        return readBeans(csvFile, beanType, makeParserSettingsForSap());
+        return readBeans(csvFile, beanType, makeParserSettingsForSap(), null);
     }
 
     public static <E> void writeWeclappBeans(List<E> beans, File file, Class<E> beanType) {
@@ -57,7 +62,7 @@ public final class CSVHandler {
     }
 
     public static <E> List<E> readWeclappBeans(File csvFile, Class<E> beanType) {
-        return readBeans(csvFile, beanType, makeParserSettingsForWeclapp());
+        return readBeans(csvFile, beanType, makeParserSettingsForWeclapp(), ENCODING);
     }
 
     private static void overwriteFile(Path path){

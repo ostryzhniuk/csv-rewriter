@@ -92,9 +92,13 @@ public class ContactDTO {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ContactDTO that = (ContactDTO) o;
-        return Objects.equals(firstName, that.firstName) &&
-                Objects.equals(lastName, that.lastName) &&
-                Objects.equals(company, that.company);
+        if (firstName == null || that.firstName == null) return false;
+        if (lastName == null || that.lastName == null) return false;
+        String companyInLowerCase = company != null ? company.toLowerCase() : company;
+        String thatCompanyInLowerCase = that.company != null ? that.company.toLowerCase() : that.company;
+        return Objects.equals(firstName.toLowerCase(), that.firstName.toLowerCase()) &&
+                Objects.equals(lastName.toLowerCase(), that.lastName.toLowerCase()) &&
+                Objects.equals(companyInLowerCase, thatCompanyInLowerCase);
     }
 
     @Override

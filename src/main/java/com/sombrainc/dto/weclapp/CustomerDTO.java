@@ -207,7 +207,8 @@ public class CustomerDTO implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CustomerDTO that = (CustomerDTO) o;
-        return Objects.equals(companyName, that.companyName);
+        if (companyName == null || that.companyName == null) return false;
+        return Objects.equals(companyName.toLowerCase(), that.companyName.toLowerCase());
     }
 
     @Override
